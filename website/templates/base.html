@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title  %}Home{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg  navbar-dark" style="background-color: #B8A391;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/" style="color: black;">Vice-Hosting</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/" style="color: black;">Accueil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color: black;">Nos Offres</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color: black;">Panel Game</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color: black;">Panel Web</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color: black;">Panel VPS</a>
+              </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="/logout" style="color: black;">Se Déconnecter</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="/login" style="color: black;">Se Connecter</a>
+              </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="sign-up" style="color: black;">Créer un compte</a>
+                  </li>
+              {% endif %}
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+        {%  if category == 'error' %}
+        <div class="alert alert-danger alert-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% else %}
+        <div class="alert alert-success alert-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endif %}
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+      <div class="container">
+        {% block content %}
+        {% endblock %}
+      </div>
+</body>
+</html>

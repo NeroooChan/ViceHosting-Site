@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% block title  %}Vice-Hosting | Se Connecter{% endblock %}
+
+{% block content %}
+<form method="post">
+    <h3>Se Connecter</h3>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Entrez votre Email">
+    </div>
+
+    <div class="form-group">
+        <label for="password">Mot de Passe</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Entrez votre Mot de passe">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Se Connecter</button>
+</form>
+{% endblock %}
